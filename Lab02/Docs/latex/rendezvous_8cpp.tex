@@ -1,0 +1,48 @@
+\hypertarget{rendezvous_8cpp}{}\section{rendezvous.\+cpp File Reference}
+\label{rendezvous_8cpp}\index{rendezvous.\+cpp@{rendezvous.\+cpp}}
+{\ttfamily \#include \char`\"{}Semaphore.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+Include dependency graph for rendezvous.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rendezvous_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{rendezvous_8cpp_aee48351152ed8e025d3a7c53f6a12450}{task\+One} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ task\+Two\+Sem)
+\item 
+void \hyperlink{rendezvous_8cpp_a83e145fd001383a5024701c3e6538d77}{task\+Two} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ task\+Two\+Sem)
+\item 
+int \hyperlink{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{rendezvous.\+cpp@{rendezvous.\+cpp}!main@{main}}
+\index{main@{main}!rendezvous.\+cpp@{rendezvous.\+cpp}}
+\subsubsection[{\texorpdfstring{main(void)}{main(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{}\label{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
+$<$ Launch the threads \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+One@{task\+One}}
+\index{task\+One@{task\+One}!rendezvous.\+cpp@{rendezvous.\+cpp}}
+\subsubsection[{\texorpdfstring{task\+One(std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+Two\+Sem)}{taskOne(std::shared_ptr< Semaphore > taskOneSem, std::shared_ptr< Semaphore > taskTwoSem)}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+One (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+One\+Sem, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+Two\+Sem}
+\end{DoxyParamCaption}
+)}\hypertarget{rendezvous_8cpp_aee48351152ed8e025d3a7c53f6a12450}{}\label{rendezvous_8cpp_aee48351152ed8e025d3a7c53f6a12450}
+\index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+Two@{task\+Two}}
+\index{task\+Two@{task\+Two}!rendezvous.\+cpp@{rendezvous.\+cpp}}
+\subsubsection[{\texorpdfstring{task\+Two(std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+Two\+Sem)}{taskTwo(std::shared_ptr< Semaphore > taskOneSem, std::shared_ptr< Semaphore > taskTwoSem)}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+Two (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+One\+Sem, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+Two\+Sem}
+\end{DoxyParamCaption}
+)}\hypertarget{rendezvous_8cpp_a83e145fd001383a5024701c3e6538d77}{}\label{rendezvous_8cpp_a83e145fd001383a5024701c3e6538d77}
