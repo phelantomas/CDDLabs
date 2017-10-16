@@ -18,7 +18,7 @@ void task(std::shared_ptr<Semaphore> theMutex, std::shared_ptr<Semaphore> turnst
   turnstile->Wait();
   turnstile->Signal();
 
-  //critical shit
+  //critical stuff here
 
   theMutex->Wait();
 
