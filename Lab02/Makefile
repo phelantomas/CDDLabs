@@ -6,16 +6,16 @@
 CC=g++
 CFLAGS= -std=c++11 -pthread
 HFILES=Semaphore.h
-CFILES=rendezvous.cpp Semaphore.cpp
+CPPFILES=rendezvous.cpp Semaphore.cpp
 
 #This rule says that each .o file depends on a .cpp file of the same name
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
 ALL: $(HFILES) $(CFILES)
-	$(CC) -o rendezvous $(CFLAGS) $(CFILES)
+	$(CC) -o rendezvous $(CFLAGS) $(CPPFILES)
 
-DEBUG: DEBUGFLAGS = -DDEBUG
+DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
 #this is customary and just deletes all .o files
