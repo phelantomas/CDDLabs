@@ -15,7 +15,7 @@ CFILES=Barrier.cpp Semaphore.cpp
 ALL: $(HFILES) $(CFILES)
 	$(CC) -o Barrier $(CFLAGS) $(CFILES) $(DEBUGFLAGS)
 
-DEBUG: DEBUGFLAGS = -DDEBUG
+DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
 #this is customary and just deletes all .o files

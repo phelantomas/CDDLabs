@@ -1,6 +1,5 @@
 //Author: Tomas Phelan
 //Date: 10/10/2017
-//
 
 #include "Semaphore.h"
 #include <iostream>
@@ -10,6 +9,8 @@ void task(std::shared_ptr<Semaphore> theSemaphore, std::shared_ptr<Semaphore> th
   theSemaphore->Wait();
   ++*count;
   if(*count == N){
+    //allow through the barrier
+    std::cout << "Count is now " << *count << " equal to N" << "\n";
     theBarrier->Signal();
   }
   theSemaphore->Signal();
@@ -25,7 +26,7 @@ int main(void){
   int N = 2;
   /**< Launch the threads  */
   threadOne=std::thread(task, mutex, barrier, &count, N);
-  threadTwo=std::thread(task,mutex, barrier, &count, N);
+  threadTwo=std::thread(task, mutex, barrier, &count, N);
   std::cout << "Launched from the main\n";
   threadOne.join();
   threadTwo.join();
