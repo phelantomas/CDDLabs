@@ -6,16 +6,16 @@
 CC=g++
 CFLAGS= -std=c++11 -pthread
 HFILES=Semaphore.h
-CFILES=Mutex.cpp Semaphore.cpp
+CPPFILES=Mutex.cpp Semaphore.cpp
 
 #This rule says that each .o file depends on a .cpp file of the same name
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
 ALL: $(HFILES) $(CFILES)
-	$(CC) -o Mutex $(CFLAGS) $(CFILES)
+	$(CC) -o Mutex $(CFLAGS) $(CPPFILES)
 
-DEBUG: DEBUGFLAGS = -DDEBUG
+DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
 #this is customary and just deletes all .o files
