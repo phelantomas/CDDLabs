@@ -1,11 +1,14 @@
 #include "Semaphore.h"
 #include <iostream>
 #include <thread>
-//Task: B1 always print before A2, and A1 always print before B2. 
-
+/*!
+Author: Tomas Phelan
+Date: 23/10/2017
+Task: B1 always print before A2, and A1 always print before B2. 
+*/
 void taskOne(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> taskTwoSem){
   std::cout << "A1 Prints Before B2 "<<std::endl;
-  //Will now allow B2 to print
+  /*! Will now allow B2 to print */
   taskOneSem->Signal();
   taskTwoSem->Wait();
   std::cout << "A2 Prints After B1 "<<std::endl;
@@ -13,7 +16,7 @@ void taskOne(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> ta
 void taskTwo(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> taskTwoSem){
   std::cout << "B1 Prints Before A2 "<<std::endl;
   taskTwoSem->Signal();
-  //Will prevent B2 from printing if not A1 has not already printed
+  /*! Will prevent B2 from printing if not A1 has not already printed */
   taskOneSem->Wait();
   std::cout << "B2 Prints After A1 "<<std::endl;
 }
@@ -23,7 +26,7 @@ int main(void){
   std::shared_ptr<Semaphore> taskOneSem( new Semaphore);
   std::shared_ptr<Semaphore> taskTwoSem( new Semaphore);
   std::cout << "Task: B1 always print before A2, and A1 always print before B2.\n";
-  /**< Launch the threads  */
+  /*! Launch the threads  */
   threadOne=std::thread(taskOne, taskOneSem, taskTwoSem);
   threadTwo=std::thread(taskTwo, taskOneSem, taskTwoSem);
 
