@@ -3,8 +3,7 @@
 {\ttfamily \#include \char`\"{}Semaphore.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$thread$>$}\\*
-Include dependency graph for rendezvous.\+cpp\+:
-\nopagebreak
+Include dependency graph for rendezvous.\+cpp\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,7 +29,7 @@ int \hyperlink{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}\hypertarget{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{}\label{rendezvous_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
-$<$ Launch the threads \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+One@{task\+One}}
+Launch the threads \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+One@{task\+One}}
 \index{task\+One@{task\+One}!rendezvous.\+cpp@{rendezvous.\+cpp}}
 \subsubsection[{\texorpdfstring{task\+One(std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+Two\+Sem)}{taskOne(std::shared_ptr< Semaphore > taskOneSem, std::shared_ptr< Semaphore > taskTwoSem)}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+One (
 \begin{DoxyParamCaption}
@@ -38,7 +37,7 @@ $<$ Launch the threads \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+One@{tas
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+Two\+Sem}
 \end{DoxyParamCaption}
 )}\hypertarget{rendezvous_8cpp_aee48351152ed8e025d3a7c53f6a12450}{}\label{rendezvous_8cpp_aee48351152ed8e025d3a7c53f6a12450}
-\index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+Two@{task\+Two}}
+Author\+: Tomas Phelan Date\+: 23/10/2017 Task\+: B1 always print before A2, and A1 always print before B2. Will now allow B2 to print \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+Two@{task\+Two}}
 \index{task\+Two@{task\+Two}!rendezvous.\+cpp@{rendezvous.\+cpp}}
 \subsubsection[{\texorpdfstring{task\+Two(std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+One\+Sem, std\+::shared\+\_\+ptr$<$ Semaphore $>$ task\+Two\+Sem)}{taskTwo(std::shared_ptr< Semaphore > taskOneSem, std::shared_ptr< Semaphore > taskTwoSem)}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+Two (
 \begin{DoxyParamCaption}
@@ -46,3 +45,4 @@ $<$ Launch the threads \index{rendezvous.\+cpp@{rendezvous.\+cpp}!task\+One@{tas
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{task\+Two\+Sem}
 \end{DoxyParamCaption}
 )}\hypertarget{rendezvous_8cpp_a83e145fd001383a5024701c3e6538d77}{}\label{rendezvous_8cpp_a83e145fd001383a5024701c3e6538d77}
+Will prevent B2 from printing if not A1 has not already printed 
