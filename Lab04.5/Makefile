@@ -5,15 +5,15 @@
 
 CC=g++
 CFLAGS= -std=c++11 -pthread
-HFILES=Semaphore.h
-CFILES=Barrier.cpp Semaphore.cpp
+HFILES=Semaphore.h Barrier.h
+CPPFILES=Barrier.cpp Semaphore.cpp main.cpp
 
 #This rule says that each .o file depends on a .cpp file of the same name
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-ALL: $(HFILES) $(CFILES)
-	$(CC) -o Barrier $(CFLAGS) $(CFILES) $(DEBUGFLAGS)
+ALL: $(HFILES) $(CPPFILES)
+	$(CC) -o Barrier $(CFLAGS) $(CPPFILES) $(DEBUGFLAGS)
 
 DEBUG: DEBUGFLAGS = -DDEBUG
 DEBUG: ALL
