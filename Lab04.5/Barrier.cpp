@@ -6,9 +6,9 @@
 // Maintainer: 
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Sat Nov  4 17:06:51 2017 (+0000)
+// Last-Updated: Tue Nov  7 15:53:00 2017 (+0000)
 //           By: Tomas Phelan
-//     Update #: 3
+//     Update #: 11
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -44,62 +44,44 @@
 
 // Code:
 
-#include "Semaphore.h"
+#include "Barrier.h"
 #include <iostream>
-#include <thread>
+#include <mutex>
 
-void task(std::shared_ptr<Semaphore> theMutex, std::shared_ptr<Semaphore> turnstile,  std::shared_ptr<Semaphore> turnstile2, int *count, int N){
-  /*! allow only one task to increment count */
-  theMutex->Wait();
-  ++*count;
-  if(*count == N){
-    turnstile2->Wait();
-    turnstile->Signal();
-    std::cout << "Count is now " << *count << " equal to N so now allowed through first turnstile \n";
-  }
-  else{
-     std::cout << "Count is now " << *count << " not equal to N so not allowed through first turnstile \n";
-  }
-  theMutex->Signal();
-  
-  /*! Only allow througn when count is equal to N */
-  turnstile->Wait();
-  turnstile->Signal();
-
-  std::cout << "Here is the critical section" << "\n";
-  //critical stuff here
-  theMutex->Wait();
-
-  --*count;
-  if(*count == 0){
-    turnstile->Wait();
-    turnstile2->Signal();
-    std::cout << "Count is now " << *count << " so now allowed through second turnstile \n";    
-  }
-  else{
-     std::cout << "Count is now " << *count << " not 0, so not allowed through the second turnstile \n";
-  }
-  theMutex->Signal();
-
-  /*! Will only allow to go through once all threads catch up */
-  turnstile2->Wait();
-  turnstile2->Signal();
+void Barrier::FirstTurnstile(){
+  	mutex->Wait();
+	++count;
+	if(count == numberOfThreads){
+	  turnstileB->Wait();
+	  turnstileA->Signal();
+	}
+	mutex->Signal();
+        turnstileA->Wait();
+	turnstileA->Signal();
 }
 
-int main(void){
-  std::thread threadOne, threadTwo;
-  std::shared_ptr<Semaphore> mutex(new Semaphore(1));
-  std::shared_ptr<Semaphore> turnstile(new Semaphore);
-  std::shared_ptr<Semaphore> turnstile2(new Semaphore(1));
-  int count = 0;
-  int N = 2;
-  /*! Launch the threads  */
-  threadOne=std::thread(task, mutex, turnstile, turnstile2, &count, N);
-  threadTwo=std::thread(task,mutex, turnstile, turnstile2, &count, N);
-  std::cout << "Launched from the main\n";
-  threadOne.join();
-  threadTwo.join();
-
-  std::cout << count << std::endl;
-  return 0;
+void Barrier::SecondTurnstile(){	
+	mutex->Wait();
+	--count;
+	if(count == 0){
+	  turnstileA->Wait();
+	  turnstileB->Signal();
+	}
+	mutex->Signal();
+	turnstileB->Wait();
+	turnstileB->Signal();
 }
+
+void Barrier::Wait(){
+  	FirstTurnstile();
+  	SecondTurnstile();
+}
+
+Barrier::Barrier(int count){
+	  numberOfThreads = count;
+	  this->count = 0;
+	  mutex=std::make_shared<Semaphore>(1);
+	  turnstileA=std::make_shared<Semaphore>(0);
+	  turnstileB=std::make_shared<Semaphore>(1);
+}
+
