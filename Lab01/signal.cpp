@@ -6,9 +6,9 @@
 // Maintainer: 
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Sat Nov  4 16:58:45 2017 (+0000)
+// Last-Updated: Wed Jan 31 12:28:59 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 2
+//     Update #: 3
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -48,6 +48,10 @@
 #include <iostream>
 #include <thread>
 
+/*! 
+brief: Will always print first. Once run, will signal the theSemaphore to allow others to run.
+parameters: theSemaphore
+*/ 
 void taskOne(std::shared_ptr<Semaphore> theSemaphore){
   std::cout <<"I ";
   std::cout << "must ";
@@ -56,6 +60,11 @@ void taskOne(std::shared_ptr<Semaphore> theSemaphore){
   /*! Allows the other task to now run */
   theSemaphore->Signal();
 }
+
+/*! 
+brief: Will always print second. Is blocked first, can only finish once taskOne completes.
+parameters: theSemaphore
+*/ 
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
   /*! Prevents this task from running until told otherwise */
   theSemaphore->Wait();
@@ -65,6 +74,10 @@ void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
   std::cout << "second"<<std::endl;
 }
 
+/*! 
+brief: Will always print first. Once run, will signal the semaphore to allow others to run
+parameters: theSemaphore
+*/ 
 int main(void){
   std::thread threadOne, threadTwo;
   std::shared_ptr<Semaphore> sem( new Semaphore);
