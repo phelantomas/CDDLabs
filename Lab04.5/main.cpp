@@ -7,9 +7,9 @@
 // Created: Sat Nov  4 20:07:20 2017 (+0000)
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Mon Nov 13 18:12:10 2017 (+0000)
+// Last-Updated: Wed Jan 31 12:41:35 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 16
+//     Update #: 17
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -56,6 +56,11 @@
   Task implementing the reuasbale barrier
 */
 
+
+/*! 
+brief: Allows multiple theads in.
+parameters: theBarrier, threadId
+*/
 void task(std::shared_ptr<Barrier> theBarrier, int threadId){
   std::cout << "Thread "<< threadId << " entered the first turnstile" << std::endl;
   theBarrier->FirstTurnstile();
