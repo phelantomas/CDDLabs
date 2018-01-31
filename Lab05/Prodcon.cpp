@@ -7,9 +7,9 @@
 // Created: Wed Oct 25 12:42:02 2017 (+0100)
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Sun Jan  7 11:32:54 2018 (+0000)
+// Last-Updated: Wed Jan 31 11:39:59 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 31
+//     Update #: 38
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -99,12 +99,19 @@ int main() {
 
   for(int i = 0; i < numberOfChars; ++i){
     randomChar = generate_char();
+     
     thread_produce = std::thread(produce, buffer, randomChar);
     thread_consume = std::thread(consume, buffer);
 
     thread_consume.join();
     thread_produce.join();
   }
+
+  thread_produce = std::thread(produce, buffer, 'X');
+  thread_consume = std::thread(consume, buffer);
+
+  thread_consume.join();
+  thread_produce.join();
   
   std::cout << std::endl;
   //initiliase
