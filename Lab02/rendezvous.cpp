@@ -7,9 +7,9 @@
 // Created: Wed Oct 25 12:53:19 2017 (+0100)
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Sat Nov  4 17:01:19 2017 (+0000)
+// Last-Updated: Wed Jan 31 12:35:28 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 2
+//     Update #: 3
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -49,6 +49,10 @@
 #include <iostream>
 #include <thread>
 
+/*! 
+brief: Makes sure A1 prints before B2, and A2 prints after B1
+parameters: taskOneSem, taskTwoSem
+*/
 void taskOne(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> taskTwoSem){
   std::cout << "A1 Prints Before B2 "<<std::endl;
   /*! Will now allow B2 to print */
@@ -56,6 +60,11 @@ void taskOne(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> ta
   taskTwoSem->Wait();
   std::cout << "A2 Prints After B1 "<<std::endl;
 }
+
+/*! 
+brief: Makes sure B1 prints before A2., and B2 prints after A1
+parameters: taskOneSem, taskTwoSem
+*/
 void taskTwo(std::shared_ptr<Semaphore> taskOneSem,std::shared_ptr<Semaphore> taskTwoSem){
   std::cout << "B1 Prints Before A2 "<<std::endl;
   taskTwoSem->Signal();
