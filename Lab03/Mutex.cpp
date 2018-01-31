@@ -6,9 +6,9 @@
 // Maintainer: 
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Sat Nov  4 17:03:48 2017 (+0000)
+// Last-Updated: Wed Jan 31 12:40:08 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 3
+//     Update #: 6
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -48,6 +48,10 @@
 #include <iostream>
 #include <thread>
 
+/*! 
+brief: Allows 2 in, preventing access to taskTwo until finished
+parameters: theSemaphore, count
+*/
 void taskOne(std::shared_ptr<Semaphore> theSemaphore, int *count){
   /*! Only allows one task in at a time */
   theSemaphore->Wait();
@@ -57,6 +61,11 @@ void taskOne(std::shared_ptr<Semaphore> theSemaphore, int *count){
   std::cout << "Count is now " << *count << " after being incremented\n";
   theSemaphore->Signal();
 }
+
+/*! 
+brief: Enters once taskOne completes
+parameters: thesemaphore, count
+*/
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore, int *count){
   theSemaphore->Wait();
   std::cout << "In critical section of task 2\n";
