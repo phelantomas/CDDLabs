@@ -7,9 +7,9 @@
 // Created: Wed Oct 25 12:42:02 2017 (+0100)
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Wed Jan 31 11:39:59 2018 (+0000)
+// Last-Updated: Wed Jan 31 12:43:36 2018 (+0000)
 //           By: Tomas Phelan
-//     Update #: 38
+//     Update #: 39
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -54,11 +54,19 @@
 
 std::map<char,int>  characterCount;
 
+/*! 
+brief: Add charcter to buffer
+parameters: buffer, character
+*/
 void produce(std::shared_ptr<SafeBuffer> buffer, char character){
   std::cout << "Producing : " << character << std::endl;
   buffer->enqueue(character);
 }
 
+/*! 
+brief: Removes character from buffer
+parameters: buffer
+*/
 void consume(std::shared_ptr<SafeBuffer> buffer){
   char removedChar;
   
@@ -67,6 +75,10 @@ void consume(std::shared_ptr<SafeBuffer> buffer){
   std::cout << "Consuming : " << removedChar << std::endl;
 }
 
+/*! 
+brief: Returns a character
+parameters:
+*/
 char generate_char(){
   char randomChar;
 
