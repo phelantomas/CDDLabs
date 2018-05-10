@@ -8,7 +8,7 @@ CC=g++
 CC=g++
 CFLAGS= -std=c++11 -pthread
 HFILES=Semaphore.h SafeBuffer.h
-CPPFILES=SafeBuffer.cpp Semaphore.cpp Prodcon.cpp
+CPPFILES=SafeBuffer.cpp Semaphore.cpp main.cpp
 
 #This rule says that each .o file depends on a .cpp file of the same name
 %.o: %.cpp
