@@ -7,9 +7,9 @@
 // Created: Wed Oct 25 12:42:02 2017 (+0100)
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Wed Jan 31 12:43:36 2018 (+0000)
+// Last-Updated: Thu May 10 10:40:14 2018 (+0100)
 //           By: Tomas Phelan
-//     Update #: 39
+//     Update #: 41
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -51,6 +51,7 @@
 #include <vector>
 #include <thread>
 #include <map>
+#include <chrono>
 
 std::map<char,int>  characterCount;
 
@@ -60,6 +61,7 @@ parameters: buffer, character
 */
 void produce(std::shared_ptr<SafeBuffer> buffer, char character){
   std::cout << "Producing : " << character << std::endl;
+  std::this_thread::sleep_for(std::chrono::milliseconds(std::rand()%1000));
   buffer->enqueue(character);
 }
 
@@ -73,6 +75,7 @@ void consume(std::shared_ptr<SafeBuffer> buffer){
   removedChar = buffer->dequeue();
   characterCount[removedChar]++;
   std::cout << "Consuming : " << removedChar << std::endl;
+  std::this_thread::sleep_for(std::chrono::milliseconds(std::rand()%1000));
 }
 
 /*! 
