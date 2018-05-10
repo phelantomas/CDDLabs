@@ -6,9 +6,9 @@
 // Maintainer: 
 // Version: 
 // Package-Requires: ()
-// Last-Updated: Wed Jan 31 12:28:59 2018 (+0000)
+// Last-Updated: Thu May 10 09:58:01 2018 (+0100)
 //           By: Tomas Phelan
-//     Update #: 3
+//     Update #: 4
 // URL: 
 // Doc URL: 
 // Keywords: 
@@ -66,7 +66,7 @@ brief: Will always print second. Is blocked first, can only finish once taskOne 
 parameters: theSemaphore
 */ 
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
-  /*! Prevents this task from running until told otherwise */
+  /*! Prevents this task from running until taskOne signals it */
   theSemaphore->Wait();
   std::cout <<"This ";
   std::cout << "will ";
